@@ -27,3 +27,10 @@ bots
     custom aciton routine is meant for you to trow in any action you want the bots to take
     delay_per_bot is a define that you can use in any of the action script to space bots action out
 
+
+hud order
+    Instead of manually numbering all huds, the framework uses an enum system.
+    It calls on HudOrder.textname instead.
+    This system makes it easy to re-arange huds simply by changing them up/down in the enum order list.
+    The end of left/midle and right hud section is clearly labeled with _end for clarity.
+    This end variable can also be used for testing to make sure a hud apears at the bottom of a side.

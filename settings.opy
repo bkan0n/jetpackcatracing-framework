@@ -4,7 +4,7 @@
 
 settings {
     "main": {
-        "description": "Jetpack Cat Racing Overhaul.\nAdapted by nebula\noriginal credit to Jashaal and Roeesun.",
+        "description": f"Jetpack Cat Racing framework.\n\nMaintained by DragonEngineer & LulledLion.\nAdapted by nebula\nOriginal credit to Jashaal & Roeesun.\n\nEditor Code: {Racer.ShareCode}\nDiscord: {Racer.Discord}\nWebsite: {Racer.Website}",
         "modeName": f"Jetpack Cat Racing {VERSION}"
     },
     "lobby": {
@@ -18,13 +18,13 @@ settings {
     },
     "gamemodes": {
         "skirmish": {
-            "enabledMaps": [
-
-                "hanamura"
-            ]
-
+            PRESET_SKIRMISH_MAPS
+        },
+		"tdm": {
+            PRESET_TDM_MAPS
         },
         "general": {
+            "gamemodeStartTrigger": "manual",
             "heroLimit": "off",
             "respawnTime%": 10,
             "spawnHealthPacks": "disabled",
@@ -36,15 +36,21 @@ settings {
             "jetpackCat": {
                 "secondaryFireRechargeRate%": 500,
                 "enablePassiveUnlimitedFuel": true,
-                "enableUlt": false
+                "movementSpeed%": 195,
+                "enableUlt": false,
+                "enableInfiniteAmmo": true
+            },
+            "shion": {
+                "secondaryFireCooldown%": 0,
+                "ability2Cooldown%": 0,
+                "ability2Duration%": 500,
+                "enableUlt": false,
+                "enableInfiniteAmmo": true
             },
             "enabledHeroes": [
-                "jetpackCat"
+                Racer.String
             ]
         }
     }
 }
 
-#!define divider(x) rule "------------------------------------------------------------------------  x ------------------------------------------------------------------------ ":\
-    @Delimiter\
-    @Disabled

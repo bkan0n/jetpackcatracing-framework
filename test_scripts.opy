@@ -11,7 +11,7 @@ rule "go to last cp - cheat":
     @Event eachPlayer
     @Condition eventPlayer.isHoldingButton(Button.ULTIMATE)
     wait(0.2, Wait.ABORT_WHEN_FALSE)
-    eventPlayer.CurrentCheckpointIdx = len(Checkpoints) - 2
+    eventPlayer.CheckpointCurrentIdx = len(Checkpoints) - 2
     SetCheckpoints()
     GoToResetPoint()
 
@@ -32,7 +32,7 @@ rule "test huds":
             localPlayer.getThrottle(),
             LeftAlign100
         ), 
-        HudPosition.LEFT, HudOrder.TEST_POSITION , Color.WHITE, HudReeval.VISIBILITY_AND_STRING, SpecVisibility.DEFAULT
+        HudPosition.LEFT, EHudOrder.TEST_POSITION , Color.WHITE, HudReeval.VISIBILITY_AND_STRING, SpecVisibility.DEFAULT
     )
 
     # load hud
@@ -48,7 +48,7 @@ rule "test huds":
             getPeakServerLoad(),
             LeftAlign100
         ),
-        HudPosition.LEFT, HudOrder.TEST_LOAD,
+        HudPosition.LEFT, EHudOrder.TEST_LOAD,
         Color.RED if getAverageServerLoad() > 220 else
         Color.ORANGE if getAverageServerLoad() > 190 else
         Color.YELLOW if getAverageServerLoad() > 160  else
@@ -60,28 +60,29 @@ rule "test huds":
 
 
 # turns bots on/off completly
-#!define bots_on true
+macro bots_on = true
 
-#!define testbot_number 10
-#!define test_team Team.2
+macro testbot_number = 10
+macro test_team = Team.2
 
 # test leaderboard (doesnt triger if action is on)
-#!define leaderboard_test true
-#!define leaderboard_delay 0.5
+macro leaderboard_test = true
+macro leaderboard_delay = 0.5
 
 # test other set actions (doesnt leaderboard if action is on)
-#!define other_action false
-#!define action_delay 0.4
+macro other_action = false
+macro action_delay = 0.4
 
 # This define puts the time between each bots action, perfectly spacing their actions out
 # delay_per_bot(0.5) means that first bot will wait 0, second bot will wait 0.5, third bot will wait 1 seconds etc
-#!define delay_per_bot(x) wait( ((TestBotArray.index(eventPlayer)) * x ) )
+macro delay_per_bot(x):
+    wait(TestBotArray.index(eventPlayer) * x)
 
 rule "bots: create test bots":
     @Condition bots_on
     TestBotArray = []
     while len(TestBotArray) < testbot_number:
-        createDummy(Hero.JETPACK_CAT, test_team, -1, null, null)
+        createDummy(Racer.Hero, test_team, -1, null, null)
         TestBotArray.append(getLastCreatedEntity())
         wait(0.1)
         TestBotArray[len(TestBotArray)-1].startForcingName("test bot {0}".format(len(TestBotArray)-1))
@@ -104,9 +105,9 @@ rule "bots: leaderboard test routine":
     delay_per_bot(leaderboard_delay)
 
     # set bot to last point, teleport them and force em down into it
-    eventPlayer.CurrentCheckpointIdx = len(Checkpoints) - 2
+    eventPlayer.CheckpointCurrentIdx = len(Checkpoints) - 2
     SetCheckpoints()
-    eventPlayer.teleport(eventPlayer.GoalCheckpoint + Vector.UP  + Vector.UP * RingSize)
+    eventPlayer.teleport(eventPlayer.CheckpointGoal + Vector.UP  + Vector.UP * RingSize)
     wait(1)
     eventPlayer.startForcingButton(Button.CROUCH)
     waitUntil(not eventPlayer.IsRacing, 5)

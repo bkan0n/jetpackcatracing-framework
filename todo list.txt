@@ -1,0 +1,140 @@
+
+=====================================================================
+speed changes
+=====================================================================
+Some small customizations for speed are needed. 
+Before starting to work, i suggest reading all the rest of this section because it is all related.
+
+the following 3 customization changes would need to be added to make map making a lot better.
+you can make it part of level data, but that would probly require an ingame interface.
+diferent maps might need diferent speed, but ingame interface is proboly gona feel clunky. there is no right option here so pick what you want to do more.
+if you do make it via map data, please also move ring size customization there (and remember old map data works diferent so it has to handle that)       
+    1) cusomtization maximum speed bonus: to prevent long maps from being unplayably fast, a customization to set a maximum speed bonus value
+    2) customization base speed: change the speed at which the player starts at, defaulting to 200
+    3) cusomtization speed gain per cp: a customization config to set the amound of speed increase you receive per ring touched.
+
+an example of ingame system would be: when u enter mode, up/down to select setting, left/rikght click to adjust setting, v to flip a value or reset to default.
+
+=====================================================================
+feature priority 
+=====================================================================
+- spectator command: implement death spectate mode so people can watch eachother. If you are not familair i can explain how it works on gpk.
+
+- portals or teleport cps: a system to either place portals or cps that teleport you when you touch them (and use the new locaiton for reset)
+
+	> for example a player might fly trough a portal or touchb a tele cp, then teleport to other side of map to continune the run.
+- editor mode boundry bypass: toggle your collision off so you can travel trough walls and boundrys
+
+- lava/kill orbs: 
+	- orbs that reset you on touching. (red or blue are good defaults, but should have color customization)
+	- not sure if speed should or shouldnt reset
+	- some parkours place them per map, others per cp. perhaps we go to cps quick so a per map basis would be logical, otherwise some kind of way to group cps into section would be hard to make
+
+
+=====================================================================
+features general 
+=====================================================================
+- proximity invisibility: when everyone spawns in same location, people cant see anything because everyone is stacked in one room. proximity invisiblity makes players invisible to eachother if they are close to eachother.
+
+- editor command: hold to leave editor + start new run > sometimes when you are editing, you want to try the course fom the start again. in retrospect, restart should be available, but it should close the editor before triggering the restart.
+
+- editor speed calc: currently when in editor, your test mode keeps the last speed you had, wich can be completly different then what the user has on that cp. perhaps you can make it so it calculates the speed the user would have at that cp when you go in test mode, and if the user wants to test lower speed they can just use quick reset.
+
+- boundry bypass orbs: place and size orbs that turn of your collision while you are inside them. this way u can fly trough a wall or boundry when ur inside it.
+
+- control map navigation: make a way to get to other segments of control maps. perhaps you can use a command to teleport to different spawns or map objectives. more then 1 keypress so u dont acidentally go.
+
+- 20+ person leaderboard: in gpk you can hold a button to toggle a full screen hud leaderboard with abou 20 entries.
+
+- death loop protection: both editor and game. if you place a cp, or a kill zone changes, you can continuesly spawn in death zone and crash loop
+
+- edit outlines: show person who is editing when they are invis with outlines so u know whats going on when you are editing with friends.
+
+- editor: have a button to set a cp as the test cp. on using quick reset you would appear at that cp instead of the normal cp. this way you can test run a group of cps in order
+
+- lion has a way to bypass some death boundries. see feedback channel on discord.
+
+- time remaining: the remaining lobby time should be displayed. consider how to handle infinite.
+
+- credit hint: the default cusomtization value for credit should hint that you can set this value in the configuration rule so people can find it.
+
+
+=====================================================================
+random wild suggestions >>> safe to ignore <<<
+=====================================================================
+- lions impulse idea: he has an idea for an alternate harder mode that uses impulses instead of speed. this would be something that can be togled on/off. consult him for more details.
+
+- ult slam: cp enables ult and puts 100%, circle that has to be slamed, with special icon as hint. perhaps doesnt act as a cp, but can be a level finish. we need to think of a proper way to reset the ult on restart, death etc
+
+- outlines: racing mode player outline color with custom config for color
+
+- pro mode: reset on death that can be toggled on
+
+- wall orbs: orbs that push you back as a wall would, note sure if this viable at our speeds.
+    this editor mode could just be handled by  lava orb mode with a togle to turn it into this hting instad.
+
+- directional bounce pads: bounce pads that push you in a direciton
+
+- auto translate
+
+- de-speed checkpoint?
+
+- trail / fx for fastest player
+
+- more sliders: gravity, slowmo, base speed
+
+- ability give nitro once per run?
+
+- place raycast + beam obstacles that reset you
+
+- slowdown orb, slower while inside or removes speed
+
+=====================================================================
+bugs 
+=====================================================================
+- the first time you spawn in the lobby, you face the wrong direction. facing isnt applying.
+
+- multiple editor hud can spawn. sometimes about moving to specate or passing it.
+
+- most huds and fx dont display properly in the build in spectate mode.
+    both play and editor modes are effected. editor huds still important for debugging but the racing huds needs to be handled atleast.
+    localplayer huds wont appear properly on those as spectators have their own variables that appear.
+    commands are not important, but things like speed, time and ring fx need to be visible.
+
+- Currently when you copy a map data rule example, it appears at the bottom.
+    - this means that you have to re-arange it to the top manually, wich is a big hassle
+        - if you are like me, you forget to de-select the original rule and end up moving the old one aswel
+    - maybe move the data or have more empty map slots by default, like 5-10 empty entries that can be used, or move to page 2
+- DM mode mostly works, just need to change settings to spawn as hero and have resources etc.
+
+- make a facing direction for first checkpoint so people dont get disoriented on spawning
+
+- missing: hud isntructions u can move faster in move mode with primary and slow down with secondary
+
+
+PERSONAL RECOCOMENDATIONS:
+- When loading editor with no data, its probly good to start with an insert start point thing isntead of move cp
+- I think holding melee instead of press is unessesary. the button is out of the way already and it doesnt tell you to hold.
+- our code could have a comented out map data section for us to quickly test
+- It would be much better to place editor mode in center instead of on top, you need to use it a lot
+    - center text should also be different color to make it more distinct from rest
+    - the current center text is just editor toggle, this is static and is best for the hud hints on the side of screen.
+- hanamura a risky map to have as example for map data, its not in main map pool so not unlikelt to get disabled agin
+- considering disabling top 5 in editor because u are gona set fast times when placing cps and then be unable to beat them
+    - the hud is already crowded enough and top 5s are useles, so in gpk its just off for this reason when in editor mode
+- i would suggest having insert mode right instead of left because we read left to right so we expect next one to be right.
+- when opening editor on a empty map, the timer starts running for no reason and this is distracting
+- dralone sugestion: color big message on screen when reaching a top 5 spot in same colors as t he top 5
+
+- The workflow is missing a map making style that genji parkour has mastered.
+    - In genji parkour u can move trough map and press a button when you land to add new cps to quickly make a map.
+    - In this editor, you constandly have to go back to last cp and use move mode, this breaks the flow a bit.
+    - Some kind of quick insert button to move to location and insert there and continue insertin
+    - suggested change: allow player to move around, press button to place cp and dont go to move mode, keep letting the player move and insert more in a row.
+
+
+QUESTIONS:
+- should we keep defaulting to team 2?
+- any reason u removed divider from editor?
+- in the website, can i add a level to an existing code?
+- What do you intend to do for map duration / time? is it gona stay infinite?

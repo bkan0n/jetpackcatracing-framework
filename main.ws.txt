@@ -1,0 +1,1056 @@
+settings
+{
+	main
+	{
+		Description: "Jetpack Cat Racing framework.\n\nMaintained by DragonEngineer & LulledLion.\nAdapted by nebula\nOriginal credit to Jashaal & Roeesun.\n\nEditor Code: TSB2M\nDiscord: dsc.gg/jetpack\nWebsite: jetpackcat.racing"
+		Mode Name: "Jetpack Cat Racing 1.1.1"
+	}
+	lobby
+	{
+		Allow Players Who Are In Queue: Yes
+		Map Rotation: After A Game
+		Max Spectators: 3
+		Max Team 1 Players: 0
+		Max Team 2 Players: 10
+		Return To Lobby: Never
+		Swap Teams After Match: No
+	}
+	modes
+	{
+		Skirmish
+		{
+		}
+		Team Deathmatch
+		{
+		}
+		General
+		{
+			Game Mode Start: Manual
+			Hero Limit: Off
+			Respawn Time Scalar: 10%
+			Spawn Health Packs: Disabled
+			Respawn As Random Hero: On
+		}
+	}
+	heroes
+	{
+		General
+		{
+			Jetpack Cat
+			{
+				Frenetic Flight Recharge Rate: 500%
+				Frenetic Flight Unlimited Fuel: On
+				Movement Speed: 195%
+				Ultimate Ability Catnapper: Off
+				No Ammunition Requirement: On
+			}
+			Shion
+			{
+				Execution Cooldown Time: 0%
+				Joyride Cooldown Time: 0%
+				Joyride Duration Scalar: 500%
+				Ultimate Ability Satsuriku Spree: Off
+				No Ammunition Requirement: On
+			}
+			enabled heroes
+			{
+				Jetpack Cat
+			}
+		}
+	}
+	extensions
+	{
+		Play More Effects
+		Explosion Sounds
+	}
+}
+
+variables {
+    global:
+        0: Checkpoints
+        10: RingSize
+        20: CreatorName
+        21: MapCode
+        22: ColorConfig
+        50: RestartLobbyTime
+        51: ServerTimeElapsed
+        52: EditorOn
+        60: LeaderboardText
+        61: LeaderboardEntries
+        62: LeaderboardRemake
+        126: TestBotArray
+        127: MapVectorArray
+    player:
+        0: EditorExport
+        1: EditorCurrentMode
+        2: EditingActive
+        3: EditCheckpointEffect
+        4: EditCheckpointTemp
+        5: EditMeleeButtonPressed
+        6: EditorIsMovingCheckpoint
+        7: EditorShowingExportInstructions
+        8: CheckpointCurrentIdx
+        9: CheckpointCurrent
+        10: CheckpointGoal
+        11: CheckpointAfterNext
+        12: TimeStart
+        13: TimeStop
+        14: TimePersonalBest
+        15: TimeSplit
+        16: TimeSplits
+        17: TimeSplitsPB
+        18: TimeSplitString
+        19: PositionOld
+        20: PositionCurrent
+        21: IsRacing
+        22: Speed
+}
+
+subroutines {
+    0: FullReset
+    1: GoToResetPoint
+    2: StartEditorCamera
+    3: StartEditorCamera2
+    4: StopEditorCamera
+    5: DisableAbilities
+    6: EnableAbilities
+    7: SetCheckpoints
+}
+
+//Optimize for size enabled
+disabled rule ("------------------------------------------------------------------------  customization ------------------------------------------------------------------------ ") {
+    event {
+        Ongoing - Global;
+    }
+}
+
+rule ("Customize Credits and Colors Here") {
+    event {
+        Ongoing - Global;
+    }
+    actions {
+        Wait(False, Ignore Condition);
+        "credits"
+        Set Global Variable(CreatorName, Custom String("creator name here"));
+        Set Global Variable(MapCode, Custom String("map code here"));
+        "ring size"
+        Set Global Variable(RingSize, 2.5);
+        "credit hud name   -   作者HUD"
+        Set Global Variable At Index(ColorConfig, False, Color(Violet));
+        "credit hud code   -   代码HUD"
+        Set Global Variable At Index(ColorConfig, True, Color(Sky Blue));
+        "discord link"
+        Set Global Variable At Index(ColorConfig, 2, Color(Aqua));
+        "control scheme"
+        Set Global Variable At Index(ColorConfig, 3, Color(White));
+        "player timer"
+        Set Global Variable At Index(ColorConfig, 4, Color(White));
+        "personal best time"
+        Set Global Variable At Index(ColorConfig, 9, Color(White));
+        "next cp"
+        Set Global Variable At Index(ColorConfig, 6, Color(Green));
+        "after next cp"
+        Set Global Variable At Index(ColorConfig, 5, Color(White));
+        "goal icon color"
+        Set Global Variable At Index(ColorConfig, 7, Color(Rose));
+        "speed meter color"
+        Set Global Variable At Index(ColorConfig, 8, Color(White));
+    }
+}
+
+disabled rule ("------------------------------------------------------------------------  mapdata ------------------------------------------------------------------------ ") {
+    event {
+        Ongoing - Global;
+    }
+}
+
+rule ("Map 1 Data <--- Insert Map Data Here") {
+    event {
+        Ongoing - Global;
+    }
+    conditions {
+        "Paste your map data here and change the condition to the correct map."
+        Current Map == Map(Workshop Island);
+    }
+}
+
+rule ("Map 2 Data <--- Insert Map Data Here") {
+    event {
+        Ongoing - Global;
+    }
+    conditions {
+        "Paste your map data here and change the condition to the correct map."
+        Current Map == Map(Workshop Island);
+    }
+}
+
+rule ("Map 3 Data <--- Insert Map Data Here") {
+    event {
+        Ongoing - Global;
+    }
+    conditions {
+        "Paste your map data here and change the condition to the correct map."
+        Current Map == Map(Workshop Island);
+    }
+}
+
+rule ("Map 4 Data <--- Insert Map Data Here") {
+    event {
+        Ongoing - Global;
+    }
+    conditions {
+        "Paste your map data here and change the condition to the correct map."
+        Current Map == Map(Workshop Island);
+    }
+}
+
+rule ("Map 5 Data <--- Insert Map Data Here") {
+    event {
+        Ongoing - Global;
+    }
+    conditions {
+        "Paste your map data here and change the condition to the correct map."
+        Current Map == Map(Workshop Island);
+    }
+}
+
+rule ("Map 6 Data <--- Insert Map Data Here") {
+    event {
+        Ongoing - Global;
+    }
+    conditions {
+        "Paste your map data here and change the condition to the correct map."
+        Current Map == Map(Workshop Island);
+    }
+}
+
+rule ("Map 7 Data <--- Insert Map Data Here") {
+    event {
+        Ongoing - Global;
+    }
+    conditions {
+        "Paste your map data here and change the condition to the correct map."
+        Current Map == Map(Workshop Island);
+    }
+}
+
+rule ("Map 8 Data <--- Insert Map Data Here") {
+    event {
+        Ongoing - Global;
+    }
+    conditions {
+        "Paste your map data here and change the condition to the correct map."
+        Current Map == Map(Workshop Island);
+    }
+}
+
+rule ("Map 9 Data <--- Insert Map Data Here") {
+    event {
+        Ongoing - Global;
+    }
+    conditions {
+        "Paste your map data here and change the condition to the correct map."
+        Current Map == Map(Workshop Island);
+    }
+}
+
+rule ("Map 10 Data <--- Insert Map Data Here") {
+    event {
+        Ongoing - Global;
+    }
+    conditions {
+        "Paste your map data here and change the condition to the correct map."
+        Current Map == Map(Workshop Island);
+    }
+}
+
+disabled rule ("------------------------------------------------------------------------  code ------------------------------------------------------------------------ ") {
+    event {
+        Ongoing - Global;
+    }
+}
+
+rule ("Init Global") {
+    event {
+        Ongoing - Global;
+    }
+    actions {
+        Disable Inspector Recording;
+        Disable Built-In Game Mode Announcer;
+        Disable Built-In Game Mode Completion;
+        Disable Built-In Game Mode Scoring;
+        Set Global Variable(RestartLobbyTime, Subtract(Add(Multiply(Workshop Setting Toggle(Custom String("Lobby Setting"), Custom String("Infinite Lobby Time"), False, 1), 999999999999), Workshop Setting Integer(Custom String("Lobby Setting"), Custom String("Restart Lobby After X minutes"), 15, 1, 60, 0)), True));
+        Wait(True, Ignore Condition);
+        Set Match Time(900);
+        Start Forcing Spawn Room(All Teams, False);
+        Start Forcing Spawn Room(All Teams, 1);
+        Start Forcing Spawn Room(All Teams, 2);
+        Stop Forcing Spawn Room(All Teams);
+        Set Global Variable(EditorOn, Workshop Setting Toggle(Custom String("Editor"), Custom String("Editor Mode Enabled"), True, 0));
+        If(Not(Global.EditorOn));
+            "LeaderboardText = null\nLeaderboardRemake = null"
+            Set Global Variable(LeaderboardEntries, Empty Array);
+        End;
+        Wait(0.512, Ignore Condition);
+        If(Compare(Global.Checkpoints, ==, Null));
+            Set Global Variable(Checkpoints, Empty Array);
+    }
+}
+
+rule ("Init Player") {
+    event {
+        Player Joined Match;
+        All;
+        All;
+    }
+    conditions {
+        Or(Not(Is Dummy Bot(Event Player)), Array Contains(Global.TestBotArray, Event Player)) == True;
+    }
+    actions {
+        Disable Kill Feed(Event Player);
+        Disable Game Mode HUD(Event Player);
+        Disable Game Mode In-World UI(Event Player);
+        Disable Messages(Event Player);
+        Disable Movement Collision With Players(Event Player);
+        "map variables need to load first"
+        Wait Until(Compare(Total Time Elapsed, >, 0.528), 0.528);
+        Wait Until(Has Spawned(Event Player), 999999999999);
+        Wait(0.128, Ignore Condition);
+        Call Subroutine(FullReset);
+    }
+}
+
+rule ("Server Time Elapsed") {
+    event {
+        Ongoing - Global;
+    }
+    actions {
+        Set Global Variable(ServerTimeElapsed, Total Time Elapsed);
+        Wait(False, Ignore Condition);
+        Loop;
+    }
+}
+
+rule ("After 3s if the checkpoints are empty then provide a warning") {
+    event {
+        Ongoing - Global;
+    }
+    conditions {
+        Total Time Elapsed > 3;
+        Count Of(Global.Checkpoints) == Null;
+    }
+    actions {
+        Create HUD Text(If-Then-Else(And(Global.EditorOn, Compare(Local Player, ==, Host Player)), Null, Local Player), Custom String(" {0} Warning: Map has no data ", Icon String(Warning)), Null, Null, Top, 5, Color(Red), Null, Null, Visible To, Default Visibility);
+    }
+}
+
+rule ("Addon | Little Destructo - Fence Breaker") {
+    event {
+        Ongoing - Global;
+    }
+    actions {
+        "Made by FishoFire version 1.1\nwait to overwrite any from copy pastas"
+        Wait(0.032, Ignore Condition);
+        "tdm/dm = first spawn points, the maps are not big so it just covers entire map. all teams defaults to team 1 spawn\npush: payload and cp 0 are set but rest isnt. normal payload maps have more then 1 point.\nrest of maps have up to 3 points"
+        Modify Global Variable(MapVectorArray, Append To Array, If-Then-Else(Compare(Current Game Mode, ==, Game Mode(Capture The Flag)), Array(Flag Position(Team 1), Flag Position(Team 2)), If-Then-Else(Array Contains(Array(Game Mode(Team Deathmatch), Game Mode(Deathmatch)), Current Game Mode), First Of(Spawn Points(All Teams)), If-Then-Else(And(First Of(Payload Position), Not(Add(Objective Position(True), Objective Position(2)))), Payload Position, Array(Objective Position(False), Objective Position(True), Objective Position(2))))));
+        "explode in a grid around the selected points"
+        While(Compare(Count Of(Global.MapVectorArray), >, 1));
+            Set Global Variable At Index(MapVectorArray, False, Null);
+            While(Compare(First Of(Global.MapVectorArray), <, 256));
+                Create Projectile(Orb Projectile, Null, Add(Value In Array(Global.MapVectorArray, True), Multiply(30, Vector(Subtract(Modulo(First Of(Global.MapVectorArray), 16), 8), False, Subtract(Round To Integer(Divide(First Of(Global.MapVectorArray), 16), Down), 8)))), Down, To World, Heal, Team 1, 0, 0, 30, Good Explosion, Explosion Sound, 1, 1, 0, 0, 0, 0);
+                Modify Global Variable At Index(MapVectorArray, False, Add, True);
+                "use modulo to only wait every x orbs keep the 0 change the other number"
+                If(Not(Modulo(First Of(Global.MapVectorArray), 3)));
+                    Wait(False, Ignore Condition);
+                End;
+            End;
+            Modify Global Variable(MapVectorArray, Remove From Array By Index, True);
+        End;
+        "handle exceptions (looking at you new queen street)"
+        Set Global Variable(MapVectorArray, Array(Vector(8.276, 4.113, 15.261), Vector(-8.319, 2.624, 14.245), Vector(False, 4.821, 18.513)));
+        While(Count Of(Global.MapVectorArray));
+            "same as other projectile before"
+            Create Projectile(Orb Projectile, Null, First Of(Global.MapVectorArray), Down, To World, Heal, Team 1, 0, 0, 30, Good Explosion, Explosion Sound, 1, 1, 0, 0, 0, 0);
+            Modify Global Variable(MapVectorArray, Remove From Array By Index, False);
+            Wait(False, Ignore Condition);
+        End;
+        Set Global Variable(MapVectorArray, Null);
+    }
+}
+
+rule ("HUD Setup") {
+    event {
+        Ongoing - Global;
+    }
+    actions {
+        Wait(0.768, Ignore Condition);
+        "Left"
+        Create HUD Text(Local Player, Hero Icon String(Hero(Jetpack Cat)), Custom String("Made By: {0}                                                                                                    ", Global.CreatorName), Custom String("Map Code: {0}                                                                                                    ", Global.MapCode), Left, 9, Color(Sky Blue), First Of(Global.ColorConfig), Value In Array(Global.ColorConfig, True), Visible To, Default Visibility);
+        Create HUD Text(Local Player, Null, Custom String("Discord: dsc.gg/jetpack                                                                                                    "), Null, Left, 10, Null, Value In Array(Global.ColorConfig, 2), Null, Visible To, Default Visibility);
+        Create HUD Text(Local Player, Null, Null, Custom String("\n{0} Speed: {1}\n{2}", Ability Icon String(Hero(Jetpack Cat), Button(Secondary Fire)), Speed Of(Local Player), Custom String("{0} Multiplier: {1}%                                                                                                    ", Icon String(Bolt), Round To Integer((Local Player).Speed, To Nearest))), Left, 11, Null, Null, Value In Array(Global.ColorConfig, 8), Visible To and String, Default Visibility);
+        Create HUD Text(Local Player, Null, Custom String("\n{0} Personal best: {1}\nLvl      PB       Split\n{2}", Ability Icon String(Hero(Jetpack Cat), Button(Ability 2)), If-Then-Else((Local Player).TimePersonalBest, (Local Player).TimePersonalBest, Custom String(" —")), Custom String("{0}{1}                                                                                                    ", (Local Player).TimeSplitString, If-Then-Else((Local Player).TimeStop, Empty Array, Custom String("{0}:     {1}{2}", (Local Player).CheckpointCurrentIdx, If-Then-Else(Compare(Subtract(Subtract(Global.ServerTimeElapsed, (Local Player).TimeStart), Value In Array((Local Player).TimeSplitsPB, (Local Player).CheckpointCurrentIdx)), <=, Null), Empty Array, Custom String("+")), Custom String("{0}     {1}", If-Then-Else((Local Player).TimePersonalBest, If-Then-Else((Local Player).TimeStart, Subtract(Subtract(Global.ServerTimeElapsed, (Local Player).TimeStart), Value In Array((Local Player).TimeSplitsPB, (Local Player).CheckpointCurrentIdx)), 0.001), 0.001), If-Then-Else((Local Player).TimeStart, Subtract(Global.ServerTimeElapsed, (Local Player).TimeStart), 0.001)))))), Null, Left, 12, Null, Color(White), Null, Visible To and String, Default Visibility);
+        "Center"
+        Create HUD Text(If-Then-Else((Host Player).EditorShowingExportInstructions, Null, Local Player), If-Then-Else((Local Player).IsRacing, Icon String(Arrow: Right), If-Then-Else(Compare((Local Player).CheckpointCurrentIdx, ==, Null), Icon String(Flag), Icon String(Checkmark))), Custom String("{0} / {1}", (Local Player).CheckpointCurrentIdx, Subtract(Count Of(Global.Checkpoints), True)), Custom String("Time: {0}", If-Then-Else((Local Player).TimeStop, Custom String("{0}.{1}", Round To Integer((Local Player).TimeStop, Down), String Slice(First Of(Round To Integer(Multiply(Subtract(Add(True, (Local Player).TimeStop), Round To Integer((Local Player).TimeStop, Down)), 10000), Up)), 1, 4)), If-Then-Else((Local Player).TimeStart, Subtract(Global.ServerTimeElapsed, (Local Player).TimeStart), Null))), Top, False, Value In Array(Global.ColorConfig, 4), Value In Array(Global.ColorConfig, 4), Value In Array(Global.ColorConfig, 4), Visible To and String, Default Visibility);
+        "Right"
+        Create HUD Text(If-Then-Else(Compare((Local Player).EditorCurrentMode, ==, Null), True, Null), Null, Null, Custom String("Press [{0}]: Quick reset\nHold [{0}]: Full restart\n", Input Binding String(Button(Reload))), Right, 16, Null, Null, Value In Array(Global.ColorConfig, 3), Visible To and String, Default Visibility);
+    }
+}
+
+rule ("Remake Leaderboard HUD") {
+    event {
+        Ongoing - Global;
+    }
+    conditions {
+        Global.LeaderboardRemake != False;
+    }
+    actions {
+        Set Global Variable(LeaderboardRemake, Null);
+        Set Global Variable(LeaderboardEntries, Sorted Array(Global.LeaderboardEntries, Value In Array(Current Array Element, True)));
+        "delete previous board (because re-val is off)"
+        While(Compare(Count Of(Global.LeaderboardText), >, Null));
+            Destroy HUD Text(First Of(Global.LeaderboardText));
+            Modify Global Variable(LeaderboardText, Remove From Array By Index, False);
+        End;
+        If(First Of(Global.LeaderboardEntries));
+            Create HUD Text(All Players(All Teams), Null, Null, Custom String("{0} Top 5 {0}", Ability Icon String(Hero(Jetpack Cat), Button(Secondary Fire))), Right, 17, Null, Null, Color(White), Visible To and String, Default Visibility);
+            Modify Global Variable(LeaderboardText, Append To Array, Last Text ID);
+            Create HUD Text(All Players(All Teams), Hero Icon String(Hero(Jetpack Cat)), First Of(First Of(Global.LeaderboardEntries)), Custom String("{0}.{1}", Round To Integer(Value In Array(First Of(Global.LeaderboardEntries), True), Down), String Slice(First Of(Round To Integer(Multiply(Subtract(Add(True, Value In Array(First Of(Global.LeaderboardEntries), True)), Round To Integer(Value In Array(First Of(Global.LeaderboardEntries), True), Down)), 10000), Up)), 1, 4)), Right, 18, Color(Red), Color(Red), Color(Red), Visible To, Default Visibility);
+            Modify Global Variable(LeaderboardText, Append To Array, Last Text ID);
+            If(Value In Array(Global.LeaderboardEntries, True));
+                Create HUD Text(All Players(All Teams), Hero Icon String(Hero(Jetpack Cat)), First Of(Value In Array(Global.LeaderboardEntries, True)), Custom String("{0}.{1}", Round To Integer(Value In Array(Value In Array(Global.LeaderboardEntries, True), True), Down), String Slice(First Of(Round To Integer(Multiply(Subtract(Add(True, Value In Array(Value In Array(Global.LeaderboardEntries, True), True)), Round To Integer(Value In Array(Value In Array(Global.LeaderboardEntries, True), True), Down)), 10000), Up)), 1, 4)), Right, 19, Color(Orange), Color(Orange), Color(Orange), Visible To, Default Visibility);
+                Modify Global Variable(LeaderboardText, Append To Array, Last Text ID);
+                If(Value In Array(Global.LeaderboardEntries, 2));
+                    Create HUD Text(All Players(All Teams), Hero Icon String(Hero(Jetpack Cat)), First Of(Value In Array(Global.LeaderboardEntries, 2)), Custom String("{0}.{1}", Round To Integer(Value In Array(Value In Array(Global.LeaderboardEntries, 2), True), Down), String Slice(First Of(Round To Integer(Multiply(Subtract(Add(True, Value In Array(Value In Array(Global.LeaderboardEntries, 2), True)), Round To Integer(Value In Array(Value In Array(Global.LeaderboardEntries, 2), True), Down)), 10000), Up)), 1, 4)), Right, 20, Color(Yellow), Color(Yellow), Color(Yellow), Visible To, Default Visibility);
+                    Modify Global Variable(LeaderboardText, Append To Array, Last Text ID);
+                    If(Value In Array(Global.LeaderboardEntries, 3));
+                        Create HUD Text(All Players(All Teams), Hero Icon String(Hero(Jetpack Cat)), First Of(Value In Array(Global.LeaderboardEntries, 3)), Custom String("{0}.{1}", Round To Integer(Value In Array(Value In Array(Global.LeaderboardEntries, 3), True), Down), String Slice(First Of(Round To Integer(Multiply(Subtract(Add(True, Value In Array(Value In Array(Global.LeaderboardEntries, 3), True)), Round To Integer(Value In Array(Value In Array(Global.LeaderboardEntries, 3), True), Down)), 10000), Up)), 1, 4)), Right, 21, Color(Lime Green), Color(Lime Green), Color(Lime Green), Visible To, Default Visibility);
+                        Modify Global Variable(LeaderboardText, Append To Array, Last Text ID);
+                        If(Value In Array(Global.LeaderboardEntries, 4));
+                            Create HUD Text(All Players(All Teams), Hero Icon String(Hero(Jetpack Cat)), First Of(Value In Array(Global.LeaderboardEntries, 4)), Custom String("{0}.{1}", Round To Integer(Value In Array(Value In Array(Global.LeaderboardEntries, 4), True), Down), String Slice(First Of(Round To Integer(Multiply(Subtract(Add(True, Value In Array(Value In Array(Global.LeaderboardEntries, 4), True)), Round To Integer(Value In Array(Value In Array(Global.LeaderboardEntries, 4), True), Down)), 10000), Up)), 1, 4)), Right, 22, Color(Green), Color(Green), Color(Green), Visible To, Default Visibility);
+                            Modify Global Variable(LeaderboardText, Append To Array, Last Text ID);
+    }
+}
+
+rule ("Effects Setup") {
+    event {
+        Ongoing - Global;
+    }
+    actions {
+        Wait(4.096, Ignore Condition);
+        Create Effect(Filtered Array(Local Player, Compare((Local Player).CheckpointGoal, !=, Null)), Good Aura, Value In Array(Global.ColorConfig, 6), (Local Player).CheckpointGoal, Subtract(Global.RingSize, 0.15), Visible To Position and Radius);
+        Create Effect(Filtered Array(Local Player, Compare((Local Player).CheckpointAfterNext, !=, Null)), Good Aura, Value In Array(Global.ColorConfig, 5), (Local Player).CheckpointAfterNext, Subtract(Global.RingSize, 0.15), Visible To Position and Radius);
+        Create Effect(Filtered Array(Local Player, And(Compare(Value In Array(Global.Checkpoints, (Local Player).CheckpointCurrentIdx), !=, Null), Compare((Local Player).EditorCurrentMode, >, Null))), Good Aura, Color(Red), Value In Array(Global.Checkpoints, (Local Player).CheckpointCurrentIdx), Subtract(Global.RingSize, 0.15), Visible To Position and Radius);
+        "checkpoint icon"
+        Create Icon(Filtered Array(Local Player, And(And(Compare((Local Player).EditorCurrentMode, ==, Null), Compare((Local Player).CheckpointGoal, !=, Null)), Not(Is In View Angle(Local Player, (Local Player).CheckpointGoal, 4)))), Add((Local Player).CheckpointGoal, Up), Arrow: Down, Visible To and Position, Value In Array(Global.ColorConfig, 7), True);
+    }
+}
+
+rule ("Editor HUD") {
+    event {
+        Ongoing - Global;
+    }
+    conditions {
+        Global.EditorOn != False;
+    }
+    actions {
+        "Current mode Top HUD"
+        Create HUD Text(If-Then-Else(And(Compare((Host Player).EditorCurrentMode, >, Null), Not((Host Player).EditorShowingExportInstructions)), Host Player, Null), If-Then-Else(Compare((Local Player).EditorCurrentMode, ==, 2), Custom String(" {0} Move Mode ", Ability Icon String(Hero(Symmetra), Button(Ability 2))), If-Then-Else(Compare((Local Player).EditorCurrentMode, ==, 3), Custom String(" {0} Insert Mode ", Icon String(Halo)), Custom String(" {0} Remove Mode ", Icon String(Trashcan)))), Null, Null, Top, True, If-Then-Else(Compare((Local Player).EditorCurrentMode, ==, 2), Color(Blue), If-Then-Else(Compare((Local Player).EditorCurrentMode, ==, 3), Color(Green), Color(Red))), Null, Null, Visible To String and Color, Visible Never);
+        "Next checkpoint HUD"
+        Create HUD Text(If-Then-Else(And(Compare((Host Player).EditorCurrentMode, >, Null), Not((Host Player).EditorShowingExportInstructions)), Host Player, Null), Null, Null, Custom String("\n\n\n\n\n{0} NEXT CHECKPOINT", Icon String(Arrow: Up)), Top, 2, Null, Null, Color(White), Visible To String and Color, Visible Never);
+        "Previous/Next mode button"
+        Create HUD Text(If-Then-Else(And(Compare((Host Player).EditorCurrentMode, >, Null), Not((Host Player).EditorShowingExportInstructions)), Host Player, Null), Null, Null, Custom String("\n\n\n\n\n\n\n\n{0} {1}                                                                             {2}", Icon String(Arrow: Left), If-Then-Else(Compare(If-Then-Else(Compare((Local Player).EditorCurrentMode, <, 4), Add((Local Player).EditorCurrentMode, True), 2), ==, 2), Custom String("Move Mode"), If-Then-Else(Compare(If-Then-Else(Compare((Local Player).EditorCurrentMode, <, 4), Add((Local Player).EditorCurrentMode, True), 2), ==, 3), Custom String("Insert Mode"), Custom String("Remove Mode"))), Custom String("{0} {1}", If-Then-Else(Compare(If-Then-Else(Compare((Local Player).EditorCurrentMode, >, 2), Subtract((Local Player).EditorCurrentMode, True), 4), ==, 2), Custom String("Move Mode"), If-Then-Else(Compare(If-Then-Else(Compare((Local Player).EditorCurrentMode, >, 2), Subtract((Local Player).EditorCurrentMode, True), 4), ==, 3), Custom String("Insert Mode"), Custom String("Remove Mode"))), Icon String(Arrow: Right))), Top, 3, Null, Null, Color(White), Visible To String and Color, Visible Never);
+        "Press interact to open editor for if there's no checkpoints"
+        Create HUD Text(If-Then-Else(And(Compare(Count Of(Global.Checkpoints), ==, Null), Not((Host Player).EditorShowingExportInstructions)), Host Player, Null), Null, Null, Custom String("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHold [{0}] to set the first checkpoint and open the editor", Input Binding String(Button(Interact))), Top, 4, Null, Null, Color(Yellow), Visible To String and Color, Visible Never);
+        "103,\nColor.WHITE,\nHudReeval.VISIBILITY_STRING_AND_COLOR,\nSpecVisibility.NEVER\n)\nSave buttons (Melee)"
+        Create HUD Text(If-Then-Else(And(Compare((Host Player).EditorCurrentMode, >, Null), Not((Host Player).EditorShowingExportInstructions)), Host Player, Null), Null, Null, If-Then-Else(And(Compare((Local Player).EditorCurrentMode, ==, 2), (Local Player).EditingActive), Custom String("\n\n\n\nSave: [{0}]                                                                    Cancel Move: [{1}]", Input Binding String(Button(Melee)), Input Binding String(Button(Interact))), If-Then-Else(Compare((Local Player).EditorCurrentMode, ==, 2), Custom String("\n\n\n\n                                                                              Move: [{0}]", Input Binding String(Button(Melee))), If-Then-Else(Compare((Local Player).EditorCurrentMode, ==, 3), Custom String("\n\n\n\n                                                                              Insert: [{0}]", Input Binding String(Button(Melee))), Custom String("\n\n\n\n                                                                              Remove: Hold [{0}]", Input Binding String(Button(Melee)))))), Top, 5, Null, Null, If-Then-Else(Compare((Local Player).EditorCurrentMode, ==, 2), Color(Sky Blue), If-Then-Else(Compare((Local Player).EditorCurrentMode, ==, 3), Color(Lime Green), Color(Rose))), Visible To String and Color, Visible Never);
+        "Previous checkpoint"
+        Create HUD Text(If-Then-Else(And(Compare((Host Player).EditorCurrentMode, >, Null), Not((Host Player).EditorShowingExportInstructions)), Host Player, Null), Null, Null, Custom String("\n\n{0} PREVIOUS CHECKPOINT", Icon String(Arrow: Down)), Top, 6, Null, Null, Color(White), Visible To String and Color, Visible Never);
+        "Editor mode and export buttons"
+        Create HUD Text(If-Then-Else(Global.EditorOn, Host Player, Null), Null, Null, Custom String("Hold [{0}]: To toggle Editor\nHold [{0} + {1}]: To Export Data\n", Input Binding String(Button(Interact)), Input Binding String(Button(Ultimate))), Right, 26, Null, Null, Value In Array(Global.ColorConfig, 3), Visible To and String, Default Visibility);
+        "move fast/slow in move mode"
+        Create HUD Text(If-Then-Else(And(And(Global.EditorOn, Compare((Host Player).EditorCurrentMode, ==, 2)), (Host Player).EditingActive), Host Player, Null), Null, Null, Custom String("Hold [{0}]: Move fast\nHold [{1}]: Move slow", Input Binding String(Button(Primary Fire)), Input Binding String(Button(Secondary Fire))), Right, 26, Null, Null, Value In Array(Global.ColorConfig, 3), Visible To and String, Default Visibility);
+        "Export instruction"
+        Create HUD Text(If-Then-Else((Host Player).EditorShowingExportInstructions, Host Player, Null), Custom String(" 0. Clear Extra Data:\n   Already Done Upon Opening This Window\n\n 1. Copy Data:\n   Open Workshop Inspector\n   Click The [(X)] {0}", Custom String("button\n\n 2. Insert Data:\n   Paste The Data Into Rule Named 'Map # Data <--- Insert Map Data Here' \n   in the workshop editor\n{0}", Custom String("\n 3. Workshop Settings:\n   Esc -> Show Lobby -> Settings -> Workshop Settings ->\n   Toggle 'Editor Mode Enabled' to 'Off'\n\n 4{0}", Custom String(". Create Initial Sharecode:\n   Esc -> Show Lobby -> Settings -> Share Code ->\n   Create New Code -> Copy Code\n\n 5. Add Credit{0}", Custom String("s:\n   Enter Your Name & Map Code In The 'Customize Credits and\n   Colors Here' Rule in the workshop editor\n\n 6. Update For Cr{0}", Custom String("edits:\n   Esc -> Show Lobby -> Settings -> Share Code ->\n   Upload To Existing Code -> Paste The Code You Created In Step 4 \n{0}", Custom String("\n Press [{0}] to hide this text", Input Binding String(Button(Melee))))))))), Null, Null, Top, 7, Color(Yellow), Null, Null, Visible To and String, Visible Never);
+    }
+}
+
+rule ("Subroutine SetCheckpoints") {
+    event {
+        Subroutine;
+        SetCheckpoints;
+    }
+    actions {
+        Set Player Variable(Event Player, CheckpointCurrent, Last Of(Value In Array(Global.Checkpoints, (Event Player).CheckpointCurrentIdx)));
+        Set Player Variable(Event Player, CheckpointGoal, First Of(Value In Array(Global.Checkpoints, Add((Event Player).CheckpointCurrentIdx, True))));
+        Set Player Variable(Event Player, CheckpointAfterNext, First Of(Value In Array(Global.Checkpoints, Add((Event Player).CheckpointCurrentIdx, 2))));
+    }
+}
+
+rule ("Subroutine GoToResetPoint") {
+    event {
+        Subroutine;
+        GoToResetPoint;
+    }
+    actions {
+        Set Player Variable(Event Player, Speed, 100);
+        Set Move Speed(Event Player, (Event Player).Speed);
+        "If there's no checkpoint set then ignore it"
+        If(Compare((Event Player).CheckpointCurrent, ==, Null));
+            Respawn(Event Player);
+            Abort;
+        End;
+        If(Not((Event Player).EditorCurrentMode));
+            Set Facing(Event Player, Direction Towards(Eye Position(Event Player), (Event Player).CheckpointGoal), To World);
+        End;
+        Teleport(Event Player, (Event Player).CheckpointCurrent);
+        Start Forcing Player Position(Event Player, (Event Player).CheckpointCurrent, True);
+        Wait(False, Ignore Condition);
+        Stop Forcing Player Position(Event Player);
+    }
+}
+
+rule ("Subroutine FullReset") {
+    event {
+        Subroutine;
+        FullReset;
+    }
+    actions {
+        Set Player Variable(Event Player, CheckpointCurrentIdx, Null);
+        Set Player Variable(Event Player, TimeStart, Null);
+        Set Player Variable(Event Player, TimeStop, Null);
+        Set Player Variable(Event Player, TimeSplitString, Empty Array);
+        Call Subroutine(SetCheckpoints);
+        "CurrentCheckpoint is first reset so this works"
+        Call Subroutine(GoToResetPoint);
+        Wait Until(And(Is Moving(Event Player), Compare((Event Player).EditorCurrentMode, ==, Null)), 999999999999);
+        Set Player Variable(Event Player, IsRacing, True);
+        Abort If(Compare(Count Of(Global.Checkpoints), <=, 1));
+        Set Player Variable(Event Player, TimeStart, Total Time Elapsed);
+    }
+}
+
+rule ("Save previous position") {
+    event {
+        Player Joined Match;
+        All;
+        All;
+    }
+    actions {
+        Set Player Variable(Event Player, PositionOld, (Event Player).PositionCurrent);
+        Set Player Variable(Event Player, PositionCurrent, Position Of(Event Player));
+        Wait(False, Ignore Condition);
+        Loop;
+    }
+}
+
+rule ("Arrive at Checkpoint") {
+    event {
+        Ongoing - Each Player;
+        All;
+        All;
+    }
+    conditions {
+        (Event Player).EditorCurrentMode == Null;
+        (Event Player).CheckpointGoal != Null;
+        Is Alive(Event Player) == True;
+        "2.65"
+        Distance Between((Event Player).CheckpointGoal, Update Every Frame(Eye Position(Event Player))) <= Global.RingSize;
+    }
+    actions {
+        "$$ TODO: Map adjustable actual speed percent"
+        Modify Player Variable(Event Player, Speed, Add, 1.5);
+        "$$ TODO: Map adjustable actual speed percent"
+        Set Move Speed(Event Player, (Event Player).Speed);
+        Play Effect(Event Player, Buff Explosion Sound, Color(White), Eye Position(Event Player), 100);
+        "$$ TODO Splits Logic Here"
+        Set Player Variable(Event Player, TimeSplit, Total Time Elapsed);
+        Modify Player Variable(Event Player, TimeSplit, Subtract, (Event Player).TimeStart);
+        Set Player Variable At Index(Event Player, TimeSplits, (Event Player).CheckpointCurrentIdx, (Event Player).TimeSplit);
+        Set Player Variable(Event Player, TimeSplitString, Custom String("{0}{1}:     {2}", (Event Player).TimeSplitString, (Event Player).CheckpointCurrentIdx, Custom String("{0}{1}     {2}\n", If-Then-Else(Compare(Value In Array((Event Player).TimeSplitsPB, (Event Player).CheckpointCurrentIdx), >, (Event Player).TimeSplit), Empty Array, Custom String("+")), If-Then-Else((Event Player).TimePersonalBest, Subtract((Event Player).TimeSplit, Value In Array((Event Player).TimeSplitsPB, (Event Player).CheckpointCurrentIdx)), 0.001), (Event Player).TimeSplit)));
+        If(Compare((Event Player).CheckpointCurrentIdx, >=, 10));
+            Set Player Variable(Event Player, TimeSplitString, String Slice((Event Player).TimeSplitString, Add(Index Of String Char((Event Player).TimeSplitString, Custom String("\n")), True), 999999999999));
+        End;
+        "$$ END Splits Logic Here"
+        Modify Player Variable(Event Player, CheckpointCurrentIdx, Add, True);
+        Call Subroutine(SetCheckpoints);
+        If(Compare(Count Of(Value In Array(Global.Checkpoints, (Event Player).CheckpointCurrentIdx)), ==, 2));
+            Teleport(Event Player, (Event Player).CheckpointCurrent);
+        End;
+        Abort If(Or(Compare(Count Of(Global.Checkpoints), <=, 1), Compare((Event Player).CheckpointCurrentIdx, <, Subtract(Count Of(Global.Checkpoints), True))));
+        "Finished"
+        Set Player Variable(Event Player, IsRacing, False);
+        Set Player Variable(Event Player, TimeStop, Total Time Elapsed);
+        Modify Player Variable(Event Player, TimeStop, Subtract, (Event Player).TimeStart);
+        "Don't record editor times"
+        Abort If(Global.EditorOn);
+        "High precision adjustment"
+        Modify Player Variable(Event Player, TimeStop, Subtract, 0.016);
+        Modify Player Variable(Event Player, TimeStop, Add, Multiply(0.016, Max(False, Min(True, Divide(Mapped Array(Array(Multiply(2.0, Dot Product(Vector Towards(Last Of(Global.Checkpoints), (Event Player).PositionOld), Direction Towards((Event Player).PositionOld, (Event Player).PositionCurrent)))), Multiply(-0.5, Add(Current Array Element, Square Root(Subtract(Multiply(Current Array Element, Current Array Element), Multiply(4.0, Subtract(Dot Product(Vector Towards(Last Of(Global.Checkpoints), (Event Player).PositionOld), Vector Towards(Last Of(Global.Checkpoints), (Event Player).PositionOld)), Multiply(Global.RingSize, Global.RingSize)))))))), Distance Between((Event Player).PositionOld, (Event Player).PositionCurrent))))));
+        If(Array Contains(Mapped Array(Global.LeaderboardEntries, First Of(Current Array Element)), Custom String("{0}", Event Player)));
+            "you already have a time"
+            If(Compare((Event Player).TimeStop, >, Value In Array(First Of(Filtered Array(Global.LeaderboardEntries, Compare(First Of(Current Array Element), ==, Custom String("{0}", Event Player)))), True)));
+                Big Message(Event Player, Custom String("Completion time: {0}.{1}", Round To Integer((Event Player).TimeStop, Down), String Slice(First Of(Round To Integer(Multiply(Subtract(Add(True, (Event Player).TimeStop), Round To Integer((Event Player).TimeStop, Down)), 10000), Up)), 1, 4)));
+                "new time worse"
+                Abort;
+            End;
+            Big Message(Event Player, Custom String("New personal best: {0}.{1}", Round To Integer((Event Player).TimeStop, Down), String Slice(First Of(Round To Integer(Multiply(Subtract(Add(True, (Event Player).TimeStop), Round To Integer((Event Player).TimeStop, Down)), 10000), Up)), 1, 4)));
+            Modify Global Variable(LeaderboardEntries, Remove From Array By Value, Filtered Array(Global.LeaderboardEntries, Compare(First Of(Current Array Element), ==, Custom String("{0}", Event Player))));
+        "you are not in list yet"
+        Else;
+            Big Message(Event Player, Custom String("Completion time: {0}.{1}", Round To Integer((Event Player).TimeStop, Down), String Slice(First Of(Round To Integer(Multiply(Subtract(Add(True, (Event Player).TimeStop), Round To Integer((Event Player).TimeStop, Down)), 10000), Up)), 1, 4)));
+            "board has room for more or faster than last entry"
+            If(Or(Compare(Count Of(Global.LeaderboardEntries), <, 25), Compare((Event Player).TimeStop, <, Value In Array(Value In Array(Global.LeaderboardEntries, 24), True))));
+                Modify Global Variable(LeaderboardEntries, Remove From Array By Index, 24);
+            Else;
+                "your time lower than last entry"
+                Abort;
+            End;
+        End;
+        Set Player Variable(Event Player, TimePersonalBest, Custom String("{0}.{1}", Round To Integer((Event Player).TimeStop, Down), String Slice(First Of(Round To Integer(Multiply(Subtract(Add(True, (Event Player).TimeStop), Round To Integer((Event Player).TimeStop, Down)), 10000), Up)), 1, 4)));
+        Set Player Variable(Event Player, TimeSplitsPB, (Event Player).TimeSplits);
+        "new top 5 if faster or entry doesnt exist yet"
+        If(Or(Or(Or(Or(Or(Or(Or(Or(Or(Compare(Value In Array(First Of(Global.LeaderboardEntries), True), >, (Event Player).TimeStop), Not(First Of(Global.LeaderboardEntries))), Compare(Value In Array(Value In Array(Global.LeaderboardEntries, True), True), >, (Event Player).TimeStop)), Not(Value In Array(Global.LeaderboardEntries, True))), Compare(Value In Array(Value In Array(Global.LeaderboardEntries, 2), True), >, (Event Player).TimeStop)), Not(Value In Array(Global.LeaderboardEntries, 2))), Compare(Value In Array(Value In Array(Global.LeaderboardEntries, 3), True), >, (Event Player).TimeStop)), Not(Value In Array(Global.LeaderboardEntries, 3))), Compare(Value In Array(Value In Array(Global.LeaderboardEntries, 4), True), >, (Event Player).TimeStop)), Not(Value In Array(Global.LeaderboardEntries, 4))));
+            Big Message(All Players(All Teams), Custom String("New top 5 time: {0}.{1} by {2}!", Round To Integer((Event Player).TimeStop, Down), String Slice(First Of(Round To Integer(Multiply(Subtract(Add(True, (Event Player).TimeStop), Round To Integer((Event Player).TimeStop, Down)), 10000), Up)), 1, 4), Event Player));
+        End;
+        Modify Global Variable(LeaderboardEntries, Append To Array, Array(Array(Custom String("{0}", Event Player), (Event Player).TimeStop)));
+        Set Global Variable(LeaderboardRemake, True);
+    }
+}
+
+rule ("Reset - Single Checkpoint") {
+    event {
+        Ongoing - Each Player;
+        All;
+        All;
+    }
+    conditions {
+        "@Condition not hostPlayer.WsEditorOn"
+        (Event Player).EditorCurrentMode == Null;
+        Is Button Held(Event Player, Button(Reload)) == True;
+    }
+    actions {
+        Wait Until(Not(Is Button Held(Event Player, Button(Reload))), 0.3);
+        Abort If(Is Button Held(Event Player, Button(Reload)));
+        If((Event Player).CheckpointCurrentIdx);
+            Call Subroutine(GoToResetPoint);
+        Else;
+            Call Subroutine(FullReset);
+    }
+}
+
+rule ("Reset - Full") {
+    event {
+        Ongoing - Each Player;
+        All;
+        All;
+    }
+    conditions {
+        "@Condition not hostPlayer.WsEditorOn"
+        (Event Player).EditorCurrentMode == Null;
+        Is Button Held(Event Player, Button(Reload)) == True;
+    }
+    actions {
+        Wait(0.5, Abort When False);
+        Call Subroutine(FullReset);
+    }
+}
+
+rule ("Handle Death") {
+    event {
+        Player Died;
+        All;
+        All;
+    }
+    actions {
+        Respawn(Event Player);
+        Call Subroutine(GoToResetPoint);
+    }
+}
+
+rule ("[Timer] After RestartLobbyTime minutes has passed, restart the lobby") {
+    event {
+        Ongoing - Global;
+    }
+    conditions {
+        Global.EditorOn == False;
+        Total Time Elapsed > Multiply(Global.RestartLobbyTime, 60);
+    }
+    actions {
+        Big Message(All Players(All Teams), Custom String("   {0} Lobby is restarting in 1 minute...", Icon String(Warning)));
+        Wait(60, Ignore Condition);
+        Big Message(All Players(All Teams), Custom String("   {0} Lobby is restarting now...", Icon String(Warning)));
+        Wait(3, Ignore Condition);
+        Restart Match;
+    }
+}
+
+rule ("Anti Crash") {
+    event {
+        Ongoing - Global;
+    }
+    conditions {
+        Server Load > 250;
+    }
+    actions {
+        Wait(True, Abort When False);
+        Small Message(All Players(All Teams), Custom String("anti-crash system activated"));
+        Set Slow Motion(10);
+        Wait Until(Compare(Server Load, <, 230), 999999999999);
+        Set Slow Motion(100);
+    }
+}
+
+disabled rule ("------------------------------------------------------------------------  editor ------------------------------------------------------------------------ ") {
+    event {
+        Ongoing - Global;
+    }
+}
+
+rule ("Editor | Enable Checkpoint Selection") {
+    event {
+        Ongoing - Each Player;
+        All;
+        All;
+    }
+    conditions {
+        Global.EditorOn != False;
+        Event Player == Host Player;
+        (Host Player).EditorShowingExportInstructions == False;
+        Is Button Held(Host Player, Button(Interact)) == True;
+        Is Button Held(Host Player, Button(Ultimate)) == False;
+    }
+    actions {
+        If((Host Player).EditorIsMovingCheckpoint);
+            Small Message(Host Player, Custom String("   {0} Checkpoint Movement Cancelled", Ability Icon String(Hero(Symmetra), Button(Ability 2))));
+            Play Effect(Host Player, Ring Explosion Sound, Color(White), Value In Array(Global.Checkpoints, (Host Player).CheckpointCurrentIdx), 100);
+            Call Subroutine(StartEditorCamera);
+            Set Player Variable(Host Player, EditCheckpointTemp, Null);
+            Destroy Effect((Host Player).EditCheckpointEffect);
+            Set Player Variable(Host Player, EditorIsMovingCheckpoint, False);
+            Set Player Variable(Host Player, EditingActive, False);
+            Abort;
+        End;
+        Wait(0.5, Abort When False);
+        Set Player Variable(Host Player, TimeStop, Null);
+        "If there's no checkpoints, create 1 at the player's position"
+        If(Compare(Count Of(Global.Checkpoints), ==, Null));
+            Set Global Variable At Index(Checkpoints, False, Position Of(Host Player));
+            Set Player Variable(Host Player, CheckpointCurrentIdx, Null);
+            Call Subroutine(SetCheckpoints);
+        End;
+        Set Player Variable(Host Player, EditorCurrentMode, If-Then-Else(Compare((Host Player).EditorCurrentMode, ==, Null), 2, Null));
+        "Entering edit mode: Start the camera and stop the timer"
+        If(Compare((Host Player).EditorCurrentMode, >, Null));
+            Set Player Variable(Host Player, TimeStart, Null);
+            Call Subroutine(StartEditorCamera);
+            Wait(0.1, Ignore Condition);
+            Play Effect(Host Player, Buff Explosion Sound, Color(White), Value In Array(Global.Checkpoints, (Host Player).CheckpointCurrentIdx), 100);
+        "Exiting edit mode: Stop the camera and continue the timer"
+        Else;
+            Set Player Variable(Host Player, TimeStart, Total Time Elapsed);
+            Set Player Variable(Host Player, EditingActive, False);
+            Destroy Effect((Host Player).EditCheckpointEffect);
+            Call Subroutine(StopEditorCamera);
+            Set Player Variable(Host Player, EditorIsMovingCheckpoint, False);
+            "if hostPlayer.CurrentCheckpointIdx < len(Checkpoints) - 1:\nhostPlayer.IsRacing = true"
+            Teleport(Host Player, Value In Array(Global.Checkpoints, (Host Player).CheckpointCurrentIdx));
+            Wait(0.1, Ignore Condition);
+            Play Effect(Host Player, Ring Explosion Sound, Color(White), Position Of(Host Player), 100);
+    }
+}
+
+rule ("Editor | Export Data") {
+    event {
+        Ongoing - Global;
+    }
+    conditions {
+        Global.EditorOn != False;
+        "@Condition hostPlayer.CurrentEditorMode == EEditorMode.OFF"
+        Is Button Held(Host Player, Button(Interact)) == True;
+        Is Button Held(Host Player, Button(Ultimate)) == True;
+        (Host Player).EditorShowingExportInstructions == False;
+    }
+    actions {
+        Wait(0.5, Abort When False);
+        Set Player Variable(Host Player, EditorShowingExportInstructions, True);
+        Set Player Variable(Host Player, EditorExport, Array(Global.ColorConfig, Global.CreatorName, Global.MapCode));
+        Set Global Variable(EditorOn, Null);
+        Set Global Variable(ColorConfig, Null);
+        Set Global Variable(CreatorName, Null);
+        Set Global Variable(MapCode, Null);
+        Set Global Variable(RestartLobbyTime, Null);
+        Set Global Variable(ServerTimeElapsed, Null);
+        Enable Inspector Recording;
+        Disable Inspector Recording;
+        Set Global Variable(EditorOn, True);
+        Set Global Variable(ColorConfig, First Of((Host Player).EditorExport));
+        Set Global Variable(CreatorName, Value In Array((Host Player).EditorExport, True));
+        Set Global Variable(MapCode, Last Of((Host Player).EditorExport));
+        Small Message(Host Player, Custom String("   Map Data Exported - Open Inspector"));
+        Play Effect(Host Player, Buff Impact Sound, Color(White), If-Then-Else(Compare((Host Player).EditorCurrentMode, ==, Null), Position Of(Host Player), Value In Array(Global.Checkpoints, (Host Player).CheckpointCurrentIdx)), 100);
+    }
+}
+
+rule ("Editor | Hide Export instruction") {
+    event {
+        Ongoing - Global;
+    }
+    conditions {
+        Global.EditorOn != False;
+        Is Button Held(Host Player, Button(Melee)) == True;
+        (Host Player).EditorShowingExportInstructions != False;
+        (Host Player).EditMeleeButtonPressed == False;
+    }
+    actions {
+        Set Player Variable(Host Player, EditMeleeButtonPressed, True);
+        Set Player Variable(Host Player, EditorShowingExportInstructions, False);
+        Play Effect(Host Player, Ring Explosion Sound, Color(White), If-Then-Else(Compare((Host Player).EditorCurrentMode, ==, Null), Position Of(Host Player), Value In Array(Global.Checkpoints, (Host Player).CheckpointCurrentIdx)), 100);
+    }
+}
+
+rule ("Editor | Select Checkpoint & Mode") {
+    event {
+        Ongoing - Each Player;
+        All;
+        All;
+    }
+    conditions {
+        Global.EditorOn != False;
+        Event Player == Host Player;
+        (Host Player).EditorCurrentMode > Null;
+        (Host Player).EditingActive == False;
+        Or(Or(Or(Compare(Z Component Of(Throttle Of(Host Player)), >, 0.5), Compare(Z Component Of(Throttle Of(Host Player)), <, -0.5)), Compare(X Component Of(Throttle Of(Host Player)), >, 0.5)), Compare(X Component Of(Throttle Of(Host Player)), <, -0.5)) == True;
+    }
+    actions {
+        Abort If((Host Player).EditMeleeButtonPressed);
+        If(Compare(Z Component Of(Throttle Of(Host Player)), >, 0.5));
+            Modify Player Variable(Host Player, CheckpointCurrentIdx, Add, True);
+            If(Compare((Host Player).CheckpointCurrentIdx, >=, Count Of(Global.Checkpoints)));
+                Set Player Variable(Host Player, CheckpointCurrentIdx, Null);
+            End;
+        Else If(Compare(Z Component Of(Throttle Of(Host Player)), <, -0.5));
+            Modify Player Variable(Host Player, CheckpointCurrentIdx, Subtract, True);
+            If(Compare((Host Player).CheckpointCurrentIdx, <, Null));
+                Set Player Variable(Host Player, CheckpointCurrentIdx, Subtract(Count Of(Global.Checkpoints), True));
+            End;
+        Else If(Compare(X Component Of(Throttle Of(Host Player)), >, 0.5));
+            Modify Player Variable(Host Player, EditorCurrentMode, Add, True);
+            If(Compare((Host Player).EditorCurrentMode, >=, 5));
+                Set Player Variable(Host Player, EditorCurrentMode, 2);
+            End;
+        Else If(Compare(X Component Of(Throttle Of(Host Player)), <, -0.5));
+            Modify Player Variable(Host Player, EditorCurrentMode, Subtract, True);
+            If(Compare((Host Player).EditorCurrentMode, <, 2));
+                Set Player Variable(Host Player, EditorCurrentMode, 4);
+            End;
+        End;
+        Call Subroutine(SetCheckpoints);
+        Wait(0.1, Ignore Condition);
+        Play Effect(Host Player, Buff Explosion Sound, Color(White), Value In Array(Global.Checkpoints, (Host Player).CheckpointCurrentIdx), 100);
+    }
+}
+
+rule ("Editor | Enable Checkpoint Edit") {
+    event {
+        Ongoing - Each Player;
+        All;
+        All;
+    }
+    conditions {
+        Global.EditorOn != False;
+        Event Player == Host Player;
+        (Host Player).EditorCurrentMode == 2;
+        Is Button Held(Host Player, Button(Melee)) == True;
+        (Host Player).EditMeleeButtonPressed == False;
+    }
+    actions {
+        Set Player Variable(Host Player, EditMeleeButtonPressed, True);
+        Set Player Variable(Host Player, EditingActive, Not((Host Player).EditingActive));
+        If((Host Player).EditingActive);
+            Small Message(Host Player, Custom String("   {0} Checkpoint Moving Enabled", Ability Icon String(Hero(Symmetra), Button(Ability 2))));
+            Play Effect(Host Player, Buff Impact Sound, Color(White), Value In Array(Global.Checkpoints, (Host Player).CheckpointCurrentIdx), 100);
+            Call Subroutine(StartEditorCamera2);
+            Set Player Variable(Host Player, EditCheckpointTemp, Value In Array(Global.Checkpoints, (Host Player).CheckpointCurrentIdx));
+            Create Effect(Host Player, Good Aura, Color(Rose), (Host Player).EditCheckpointTemp, Subtract(Global.RingSize, 0.15), Visible To Position and Radius);
+            Set Player Variable(Host Player, EditCheckpointEffect, Last Created Entity);
+            Set Player Variable(Host Player, EditorIsMovingCheckpoint, True);
+        Else;
+            Small Message(Host Player, Custom String("   {0} Checkpoint Placed", Ability Icon String(Hero(Symmetra), Button(Ability 2))));
+            Play Effect(Host Player, Buff Impact Sound, Color(White), (Host Player).EditCheckpointTemp, 100);
+            Call Subroutine(StartEditorCamera);
+            Set Global Variable At Index(Checkpoints, (Host Player).CheckpointCurrentIdx, (Host Player).EditCheckpointTemp);
+            Call Subroutine(SetCheckpoints);
+            Set Player Variable(Host Player, EditCheckpointTemp, Null);
+            Destroy Effect((Host Player).EditCheckpointEffect);
+            Set Player Variable(Host Player, EditorIsMovingCheckpoint, False);
+    }
+}
+
+rule ("Editor | Start Editing Position") {
+    event {
+        Ongoing - Global;
+    }
+    conditions {
+        Global.EditorOn != False;
+        (Host Player).EditorCurrentMode == 2;
+        (Host Player).EditingActive != False;
+        (Host Player).EditMeleeButtonPressed == False;
+    }
+    actions {
+        While(And(Not(Is Button Held(Host Player, Button(Melee))), (Host Player).EditingActive));
+            Modify Player Variable(Host Player, EditCheckpointTemp, Add, Multiply(Subtract(Add(0.096, Multiply(0.192, Is Button Held(Host Player, Button(Primary Fire)))), Multiply(0.048, Is Button Held(Host Player, Button(Secondary Fire)))), Add(Add(Multiply(Multiply(Facing Direction Of(Host Player), Z Component Of(Throttle Of(Host Player))), Vector(True, Not(Is Button Held(Host Player, Button(Ability 1))), True)), World Vector Of(Multiply(Throttle Of(Host Player), Left), Host Player, Rotation)), Multiply(Up, Subtract(Is Button Held(Host Player, Button(Jump)), Is Button Held(Host Player, Button(Crouch)))))));
+            Wait(False, Ignore Condition);
+        End;
+    }
+}
+
+rule ("Editor | Remove Checkpoint") {
+    event {
+        Ongoing - Each Player;
+        All;
+        All;
+    }
+    conditions {
+        Global.EditorOn != False;
+        Event Player == Host Player;
+        (Host Player).EditorCurrentMode == 4;
+        Is Button Held(Host Player, Button(Melee)) == True;
+        (Host Player).EditMeleeButtonPressed == False;
+    }
+    actions {
+        Wait(0.5, Abort When False);
+        Set Player Variable(Host Player, EditMeleeButtonPressed, True);
+        Modify Global Variable(Checkpoints, Remove From Array By Index, (Host Player).CheckpointCurrentIdx);
+        "If deleted the last checkpoint, reset the first checkpoint to be the player's current position"
+        If(Compare(Count Of(Global.Checkpoints), ==, Null));
+            Set Player Variable(Host Player, EditorCurrentMode, Null);
+            Set Player Variable(Host Player, EditingActive, False);
+            Call Subroutine(StopEditorCamera);
+            Set Player Variable(Host Player, CheckpointCurrentIdx, Null);
+            Small Message(Host Player, Custom String("   {0} No Checkpoints left to remove", Icon String(Trashcan)));
+            Play Effect(Host Player, Debuff Impact Sound, Color(White), Position Of(Host Player), 100);
+            Abort;
+        End;
+        If(Compare((Host Player).CheckpointCurrentIdx, >=, Count Of(Global.Checkpoints)));
+            Set Player Variable(Host Player, CheckpointCurrentIdx, Subtract(Count Of(Global.Checkpoints), True));
+        End;
+        Call Subroutine(SetCheckpoints);
+        Wait(0.1, Ignore Condition);
+        Small Message(Host Player, Custom String("   {0} Checkpoint Removed", Icon String(Trashcan)));
+        Play Effect(Host Player, Ring Explosion Sound, Color(White), Value In Array(Global.Checkpoints, (Host Player).CheckpointCurrentIdx), 100);
+    }
+}
+
+rule ("Editor | Insert Checkpoint (After Current Checkpoint)") {
+    event {
+        Ongoing - Each Player;
+        All;
+        All;
+    }
+    conditions {
+        Global.EditorOn != False;
+        Event Player == Host Player;
+        (Host Player).EditorCurrentMode == 3;
+        Is Button Held(Host Player, Button(Melee)) == True;
+        (Host Player).EditMeleeButtonPressed == False;
+    }
+    actions {
+        Small Message(Host Player, Custom String("   {0} Checkpoint Inserted", Icon String(Halo)));
+        Play Effect(Host Player, Buff Impact Sound, Color(White), Value In Array(Global.Checkpoints, (Host Player).CheckpointCurrentIdx), 100);
+        Set Player Variable(Host Player, EditMeleeButtonPressed, True);
+        Modify Global Variable(Checkpoints, Append To Array, Null);
+        Set Global Variable(Checkpoints, Mapped Array(Global.Checkpoints, If-Then-Else(Compare(Current Array Index, <=, (Host Player).CheckpointCurrentIdx), Current Array Element, Value In Array(Global.Checkpoints, Subtract(Current Array Index, True)))));
+        Modify Player Variable(Host Player, CheckpointCurrentIdx, Add, True);
+        Call Subroutine(SetCheckpoints);
+        Set Player Variable(Host Player, EditorCurrentMode, 2);
+        Set Player Variable(Host Player, EditingActive, True);
+        Call Subroutine(StartEditorCamera2);
+        Set Player Variable(Host Player, EditCheckpointTemp, Value In Array(Global.Checkpoints, (Host Player).CheckpointCurrentIdx));
+        Create Effect(Host Player, Good Aura, Color(Rose), (Host Player).EditCheckpointTemp, Subtract(Global.RingSize, 0.15), Visible To Position and Radius);
+        Set Player Variable(Host Player, EditCheckpointEffect, Last Created Entity);
+        Set Player Variable(Host Player, EditorIsMovingCheckpoint, True);
+    }
+}
+
+rule ("Editor | When stopped pressing melee, set EditMeleeButtonPressed back to true so next melee button can be presssed") {
+    event {
+        Ongoing - Global;
+    }
+    conditions {
+        Global.EditorOn != False;
+        Is Button Held(Host Player, Button(Melee)) == False;
+    }
+    actions {
+        Set Player Variable(Host Player, EditMeleeButtonPressed, False);
+    }
+}
+
+rule ("Editor | Start Editor 3rd Person Camera") {
+    event {
+        Subroutine;
+        StartEditorCamera;
+    }
+    actions {
+        Set Invisible(Host Player, All);
+        Call Subroutine(DisableAbilities);
+        Start Camera(Host Player, Update Every Frame(Add(Ray Cast Hit Position((Host Player).CheckpointCurrent, Subtract((Host Player).CheckpointCurrent, Multiply(8, Facing Direction Of(Host Player))), Null, Null, False), Facing Direction Of(Host Player))), (Host Player).CheckpointCurrent, 500);
+    }
+}
+
+rule ("Editor | Start Editor 3rd Person Camera | Checkpoint Movement") {
+    event {
+        Subroutine;
+        StartEditorCamera2;
+    }
+    actions {
+        Start Camera(Host Player, Subtract((Host Player).EditCheckpointTemp, Multiply(6, Update Every Frame(Facing Direction Of(Host Player)))), (Host Player).EditCheckpointTemp, 25);
+    }
+}
+
+rule ("Editor | Stop Editor 3rd Person Camera") {
+    event {
+        Subroutine;
+        StopEditorCamera;
+    }
+    actions {
+        Stop Camera(Host Player);
+        Set Invisible(Host Player, None);
+        Call Subroutine(EnableAbilities);
+    }
+}
+
+rule ("Editor | Disable Movement and Abilities") {
+    event {
+        Subroutine;
+        DisableAbilities;
+    }
+    actions {
+        Set Jump Enabled(Host Player, False);
+        Set Crouch Enabled(Host Player, False);
+        Set Primary Fire Enabled(Host Player, False);
+        Set Secondary Fire Enabled(Host Player, False);
+        Disallow Button(Host Player, Button(Secondary Fire));
+        Set Ability 1 Enabled(Host Player, False);
+        Set Ability 2 Enabled(Host Player, False);
+        Set Move Speed(Host Player, False);
+    }
+}
+
+rule ("Editor | Enable Movement and Abilities") {
+    event {
+        Subroutine;
+        EnableAbilities;
+    }
+    actions {
+        Set Jump Enabled(Host Player, True);
+        Set Crouch Enabled(Host Player, True);
+        Set Primary Fire Enabled(Host Player, True);
+        Set Secondary Fire Enabled(Host Player, True);
+        Allow Button(Host Player, Button(Secondary Fire));
+        "This stays off always"
+        Set Ability 1 Enabled(Host Player, False);
+        Set Ability 2 Enabled(Host Player, True);
+        Set Move Speed(Host Player, 100);
+    }
+}
+
